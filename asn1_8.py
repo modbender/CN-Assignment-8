@@ -12,7 +12,7 @@ def main():
     sip = options.sip;
     sport = options.sport
     cport = options.cport
-    data = options.DATA
+    data = options.data
 
 
 if __name__ == '__main__':

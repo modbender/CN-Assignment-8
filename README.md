@@ -7,7 +7,7 @@ Write a UDP Client program that sends some data to a UDP server on a specified p
 
 The program is to be invoked as
 
-`./asn1_8 -s <server ip address> -p <server port number> -P <client port number> -d <data>`
+`python asn1_8.py -s <server ip address> -p <server port number> -P <client port number> -d <data>`
 
 
 ## Members
