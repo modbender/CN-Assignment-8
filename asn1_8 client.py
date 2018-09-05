@@ -14,7 +14,7 @@ def main():
     cport = options.cport
     data = options.data
 
-    print("Content yet to be added")
+    print("UDP Client - Content yet to be added")
 
 if __name__ == '__main__':
     if(len(sys.argv)==1):
