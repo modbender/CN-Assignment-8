@@ -9,7 +9,7 @@ def main():
     aparser.add_argument('-P' , type = int, nargs = 1, dest = 'cport', help = 'Client Port Number', required = True)
     aparser.add_argument('-d' , type=str , dest = 'data', nargs = 1, help = 'data', required = True)
     options = aparser.parse_args()
-    sip = options.sip;
+    sip = options.sip
     sport = options.sport
     cport = options.cport
     data = options.data
