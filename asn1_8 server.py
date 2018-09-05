@@ -3,7 +3,7 @@ import sys
 import argparse
 
 def main():
-    aparser = argparse.ArgumentParser(description = 'Modify UDP message to show the same checksum')
+    aparser = argparse.ArgumentParser(description = 'Server - Modify UDP message to show the same checksum')
     aparser.add_argument('-p' , type = int, nargs = 1, dest = 'sport', help = 'Server Port Number', required = True)
     options = aparser.parse_args()
     sport = options.sport
