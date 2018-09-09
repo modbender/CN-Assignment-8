@@ -9,6 +9,9 @@ The program is to be invoked as
 
 `python asn1_8.py -s <server ip address> -p <server port number> -P <client port number> -d <data>`
 
+Example
+`python asn1_8.py -s localhost -p 3333 -P 3333 -d ABCD`
+
 
 ## Members
 - 1KS14CS076 Pavan Kumar D
