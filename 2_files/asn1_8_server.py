@@ -28,12 +28,12 @@ def main():
         mmsg = data+data
         ssock.sendto(mmsg,clientaddr)
         #csock.send(mmsg.encode('utf-8'))
-    #csock.close()
+        #csock.close()
 
 if __name__ == '__main__':
     if(len(sys.argv)==1):
         sys.exit("Enter all arguments\nExpected Format : asn1_8.py -p <server port number>")
     elif(len(sys.argv)>6):
-        sys.exit("Unknown extra arguments added. Please check the arguments provided, properly")
+        sys.exit("Unknown extra arguments added. Please check the arguments provided properly")
     else:
         sys.exit(main())
