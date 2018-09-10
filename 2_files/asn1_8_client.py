@@ -1,6 +1,8 @@
 import os
 import sys
 import argparse
+import struct
+import socket
 
 def main():
     aparser = argparse.ArgumentParser(description = 'Client - Modify UDP message to show the same checksum')
@@ -9,12 +11,19 @@ def main():
     aparser.add_argument('-P' , type = int, nargs = 1, dest = 'cport', help = 'Client Port Number', required = True)
     aparser.add_argument('-d' , type = str , dest = 'data', nargs = 1, help = 'data', required = True)
     options = aparser.parse_args()
-    sip = options.sip
-    sport = options.sport
-    cport = options.cport
-    data = options.data
+    sip = options.sip[0]
+    sport = options.sport[0]
+    cport = options.cport[0]
+    data = options.data[0]
 
-    print("UDP Client - Content yet to be added")
+    csock = socket.socket()
+    csock.connect((sip,sport))
+    print("Connected to server : "+str(sip))
+    msg = data
+    print("Sending to Server: "+data)
+    csock.sendto(msg.encode('utf-8'),(sip,sport))
+    mmsg,sip = csock.recvfrom(2048)
+    print("Received Modified Message : "+str(mmsg.decode('utf-8')))
 
 if __name__ == '__main__':
     if(len(sys.argv)==1):
