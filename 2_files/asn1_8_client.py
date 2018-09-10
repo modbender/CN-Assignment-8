@@ -30,6 +30,6 @@ if __name__ == '__main__':
     if(len(sys.argv)==1):
         sys.exit("Enter all arguments\nExpected Format : asn1_8.py -s <server ip address> -p <server port number> -P <client port number> -d <data>")
     elif(len(sys.argv)>9):
-        sys.exit("Unknown extra arguments added. Please check the arguments provided, properly")
+        sys.exit("Unknown extra arguments added. Please check the arguments provided properly")
     else:
         sys.exit(main())
