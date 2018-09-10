@@ -12,22 +12,23 @@ def main():
     sip = str(options.sip[0])
     sport = options.sport[0]
 
-    ssock = socket.socket()
+    ssock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
     ssock.bind((sip,sport))
-    ssock.listen(5)
+    # ssock.listen(5)
     print("Server waiting for connection")
-    csock, cip = ssock.accept()
-    print("Connection from : "+cip[0])
+    # csock, cip = ssock.accept()
+    # print("Connection from : "+cip[0])
     while True:
-        data = csock.recv(2048).decode('utf-8')
+        data,clientaddr = ssock.recvfrom(1024) #.recv(2048).decode('utf-8')
         if not data:
             print("No data received")
             break
 
-        print("Message : "+data)
+        print("Message : "+ data)
         mmsg = data+data
-        csock.send(mmsg.encode('utf-8'))
-    csock.close()
+        ssock.sendto(mmsg,clientaddr)
+        #csock.send(mmsg.encode('utf-8'))
+    #csock.close()
 
 if __name__ == '__main__':
     if(len(sys.argv)==1):

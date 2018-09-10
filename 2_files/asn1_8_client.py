@@ -16,13 +16,13 @@ def main():
     cport = options.cport[0]
     data = options.data[0]
 
-    csock = socket.socket()
+    csock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
     csock.connect((sip,sport))
     print("Connected to server : "+str(sip))
     msg = data
     print("Sending to Server: "+data)
-    csock.sendto(msg.encode('utf-8'),(sip,sport))
-    mmsg,sip = csock.recvfrom(2048)
+    csock.sendto(msg,(sip,sport))
+    mmsg,sip = csock.recvfrom(1024)
     mmsg = mmsg.decode('utf-8')
     print("Received Modified Message : "+str(mmsg))
 
