@@ -38,24 +38,33 @@ def main():
     p2.start()
 
 def client(sip,sport,cport,data):
-    csock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-    msg = raw_input(data)
-    print("Client Sending Data : "+data)
-    csock.sendto(msg,(sip,sport))
-    mmsg.sip=csock.recvfrom(2048)
-    print(mmsg)
-    csock.close()
+    csock = socket.socket()
+    csock.connect((sip,sport))
+    print("Connected to server : "+str(sip))
+    msg = data
+    print("Sending to Server: "+data)
+    csock.sendto(msg.encode('utf-8'),(sip,sport))
+    mmsg,sip = csock.recvfrom(2048)
+    mmsg = mmsg.decode('utf-8')
+    print("Received Modified Message : "+str(mmsg))
 
 def server(sip,sport,cport,data):
-    ssock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+    ssock = socket.socket()
     ssock.bind((sip,sport))
-    print("The server is ready to recieve!")
+    ssock.listen(5)
+    print("Server waiting for connection")
+    csock, cip = ssock.accept()
+    print("Connection from : "+cip[0])
     while True:
-        data, sip = ssock.recvfrom(2048)
-        mmsg = msg.uppercase()
+        data = csock.recv(2048).decode('utf-8')
+        if not data:
+            print("No data received")
+            break
+
         print("Message : "+data)
-        ssock.sendto(mmsg,cport)
-    ssock.close()
+        mmsg = data+data
+        csock.send(mmsg.encode('utf-8'))
+    csock.close()
 
 if __name__ == '__main__':
     if(len(sys.argv)==1):

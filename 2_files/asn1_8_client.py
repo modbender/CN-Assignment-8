@@ -23,7 +23,8 @@ def main():
     print("Sending to Server: "+data)
     csock.sendto(msg.encode('utf-8'),(sip,sport))
     mmsg,sip = csock.recvfrom(2048)
-    print("Received Modified Message : "+str(mmsg.decode('utf-8')))
+    mmsg = mmsg.decode('utf-8')
+    print("Received Modified Message : "+str(mmsg))
 
 if __name__ == '__main__':
     if(len(sys.argv)==1):
