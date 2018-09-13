@@ -32,12 +32,14 @@ def main():
     cport = options.cport[0]
     data = options.data[0]
     print("Given Arguments\nSIP : "+str(sip)+" SPORT : "+str(sport)+" CPORT : "+str(cport)+" DATA : "+str(data))
-    p1 = Process(target=server(sip,sport,cport,data))
-    p2 = Process(target=client(sip,sport,cport,data))
+    p1 = Process(target=server, args=(sip,sport,cport,data))
+    p2 = Process(target=client, args=(sip,sport,cport,data))
     p1.start()
     p2.start()
+    p2.join()
 
 def client(sip,sport,cport,data):
+    print("---------------------------CLIENT---------------------------")
     csock = socket.socket()
     csock.connect((sip,sport))
     print("Connected to server : "+str(sip))
@@ -49,6 +51,7 @@ def client(sip,sport,cport,data):
     print("Received Modified Message : "+str(mmsg))
 
 def server(sip,sport,cport,data):
+    print("---------------------------SERVER---------------------------")
     ssock = socket.socket()
     ssock.bind((sip,sport))
     ssock.listen(5)
